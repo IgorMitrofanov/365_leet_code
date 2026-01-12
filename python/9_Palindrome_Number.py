@@ -37,7 +37,23 @@ class Solution(object):
         :type x: int
         :rtype: bool
         """
-        return str(x) == "".join(reversed(str(x)))
+        def reverse(x):
+            res = 0
+            INT32_MAX = 2**31 - 1
+            INT32_MIN = -2**31
+            ax = abs(x)
+            sign = -1 if x < 0 else 1
+            while ax != 0:
+                digit = ax % 10
+                ax = ax // 10
+                limit = INT32_MAX if sign == 1 else -INT32_MIN
+                if (res > limit // 10) or (res == limit // 10 and digit > limit % 10):
+                    return 0
+                res = res*10 + digit
+            return res
+        print(x)
+        print(reverse(x))
+        return x == reverse(x)
 
 sol = Solution() 
 
